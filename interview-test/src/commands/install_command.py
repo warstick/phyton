@@ -1,4 +1,4 @@
-from module import Module
+from module.module import Module
 
 class InstallCommand:
     def execute(self, args):
@@ -9,10 +9,10 @@ class InstallCommand:
         return result
 
     def install(self, current, result):
-        if current.isInstalled():
+        if current.isInstalled == False:
             current.setInstalled(True)
             for dependency in current.getDependencies():
-                if dependency.isInstalled():
+                if dependency.isInstalled == False:
                     self.install(dependency, result)
             result[current.getName()] = "successfully installed"
         else:

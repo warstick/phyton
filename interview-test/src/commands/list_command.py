@@ -1,4 +1,4 @@
-from module import Module
+from module.module import Module
 
 class ListCommand:
     def execute(self, args):

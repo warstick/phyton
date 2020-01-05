@@ -9,29 +9,25 @@ operations = dict({
     "DEPEND": DependCommand(),
     "INSTALL": InstallCommand(),
     "REMOVE": RemoveCommand(),
-    "LIST": InstallCommand()
+    "LIST": ListCommand()
 })
 
 ## Read commands File
 script_dir = os.path.dirname(__file__)
 file_path = os.path.join(script_dir, "../assets/commands.dat")
-print(file_path)
 commandsData = open(file_path, "r")
 
-print("file conent", commandsData)
-
 def processLine(line):
-        arguments = line.split(" ")
+        arguments = line.replace("\n", "").replace("\r", "").split(" ")
         cmd = operations[arguments[0]]
         if cmd is None:
             raise Exception("Unknown command " + line)
         print(line)
-        args = set(arguments)
+        args = arguments.copy()
         args.remove(arguments[0]) # remove command
         success = cmd.execute(args)
-        
-        for installedPackage in success.values():
-            print("/t", installedPackage)
+        for installedPackage in success:
+            print("\t", installedPackage, " ", success[installedPackage], "\n")
 
 def process():
     line = commandsData.readline()

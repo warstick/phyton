@@ -3,19 +3,12 @@ class Module:
     dependencyDictionary = dict()
     dependencies = set()
     dependents = set()
+    name= ''
+    isInstalled = False
 
     # constructor
     def __init__(self, name):
         self.name = name
-
-    #getter for Name
-    @property
-    def name(self):
-        return self.name
-    #getter for isInstalled
-    @property
-    def isInstalled(self):
-        return self.isInstalled
     
     @staticmethod
     def getInstance(name):
@@ -25,15 +18,12 @@ class Module:
             Module.dependencyDictionary[name] = target
         return target
     
+    def getName(self):
+        return self.name
+    
     def setInstalled(self, installed):
         self.isInstalled = installed
     
-    def getDependents(self):
-        return self.dependents
-
-    def hasDependents(self):
-        return len(self.dependents) > 0
-
     def hasDependencies(self):
         return len(self.dependencies) > 0
 
@@ -42,6 +32,12 @@ class Module:
 
     def addDependency(self, d):
         return self.dependencies.add(d)
+    
+    def getDependents(self):
+        return self.dependents
+
+    def hasDependents(self):
+        return len(self.dependents) > 0
 
     def addDependent(self, d):
         return self.dependents.add(d)
@@ -53,6 +49,6 @@ class Module:
     def getInstalled():
         installed = set()
         for module in Module.dependencyDictionary.values():
-            if module.isInstalled():
+            if module.isInstalled == True:
                 installed.add(module)
         return installed

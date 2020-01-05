@@ -1,4 +1,4 @@
-from module import Module
+from module.module import Module
 
 class DependCommand:
     def execute(self, args):
@@ -6,7 +6,7 @@ class DependCommand:
 
         current = Module.getInstance(depName)
 
-        for strDependency in args.subList(1, len(args)):
+        for strDependency in args[1:]:
             dependency = Module.getInstance(strDependency)
             current.addDependency(dependency)
             dependency.addDependent(current)
