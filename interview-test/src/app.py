@@ -45,4 +45,9 @@ def process():
         line = commandsData.readline()
 
 # kickoff the process
-process()
+try:
+    process()
+except:
+    print("something went wrong")
+finally:
+    commandsData.close()
