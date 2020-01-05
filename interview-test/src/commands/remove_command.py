@@ -16,7 +16,7 @@ class RemoveCommand:
             if dep.isInstalled == True:
                 installedDependents.add(dep)
         if len(installedDependents) is 0:
-            result[parent.getName()] = "successfully removed"
+            result[parent.getName()] = "is not installed" if parent.isInstalled == False else "successfully removed"
             parent.setInstalled(False)
 
             for dependency in parent.getDependencies():
