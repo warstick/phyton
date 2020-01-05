@@ -13,18 +13,18 @@ class RemoveCommand:
         result = dict()
         installedDependents = set()
         for dep in parent.getDependents():
-            if dep.isInstalled == True:
+            if dep.isInstalled is True:
                 installedDependents.add(dep)
         if len(installedDependents) is 0:
             messages = list()
-            if isInnerDependency == True:
+            if isInnerDependency is True:
                 messages.append("is no longer needed")
             messages.append("is not installed") if parent.isInstalled == False else messages.append("successfully removed")
             result[parent.getName()] = messages
             parent.setInstalled(False)
 
             for dependency in parent.getDependencies():
-                if dependency.isInstalled == True:
+                if dependency.isInstalled is True:
                     result.update(self.uninstall(dependency, True))
         else:
             result[parent.getName()] = ["is still needed."]

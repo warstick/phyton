@@ -9,10 +9,10 @@ class InstallCommand:
         return result
 
     def install(self, current, result):
-        if current.isInstalled == False:
+        if current.isInstalled is False:
             current.setInstalled(True)
             for dependency in current.getDependencies():
-                if dependency.isInstalled == False:
+                if dependency.isInstalled is False:
                     self.install(dependency, result)
             result[current.getName()] = ["successfully installed"]
         else:

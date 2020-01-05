@@ -51,6 +51,6 @@ class Module:
     def getInstalled():
         installed = set()
         for module in Module.dependencyDictionary.values():
-            if module.isInstalled == True:
+            if module.isInstalled is True:
                 installed.add(module)
         return installed
