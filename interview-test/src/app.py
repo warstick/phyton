@@ -27,7 +27,12 @@ def processLine(line):
         args.remove(arguments[0]) # remove command
         success = cmd.execute(args)
         for installedPackage in success:
-            print(installedPackage, "", success[installedPackage])
+            if len(success[installedPackage]) is 0:
+                print(installedPackage)
+            else:
+                for message in success[installedPackage]:
+                    print(installedPackage, "", message)
+        print("\n")
 
 def process():
     line = commandsData.readline()

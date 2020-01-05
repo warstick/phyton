@@ -14,7 +14,7 @@ class InstallCommand:
             for dependency in current.getDependencies():
                 if dependency.isInstalled == False:
                     self.install(dependency, result)
-            result[current.getName()] = "successfully installed"
+            result[current.getName()] = ["successfully installed"]
         else:
-            result[current.getName()] = "is already installed"
+            result[current.getName()] = ["is already installed"]
         return result
