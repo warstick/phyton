@@ -4,10 +4,10 @@ class DependCommand:
     def execute(self, args):
         depName = args[0]
 
-        current = Module.getInstance(depName)
+        currentModule = Module.getInstance(depName)
 
         for strDependency in args[1:]:
             dependency = Module.getInstance(strDependency)
-            current.addDependency(dependency)
-            dependency.addDependent(current)
+            currentModule.addDependency(dependency)
+            dependency.addDependent(currentModule)
         return dict()

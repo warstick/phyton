@@ -9,6 +9,8 @@ class Module:
     # constructor
     def __init__(self, name):
         self.name = name
+        self.dependencies = set()
+        self.dependents = set()
     
     @staticmethod
     def getInstance(name):
