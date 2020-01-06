@@ -1,6 +1,7 @@
 from module.module import Module
 
 class InstallCommand:
+    # Execute the installation of the module / package
     def execute(self, args):
         result = dict()
         for depName in args:
@@ -8,6 +9,7 @@ class InstallCommand:
             self.install(dep, result)
         return result
 
+    # Recurssive funtion for the installing the module / package with dependency modules / packages
     def install(self, current, result):
         if current.isInstalled is False:
             current.setInstalled(True)

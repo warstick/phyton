@@ -1,6 +1,7 @@
 from module.module import Module
 
 class RemoveCommand:
+    # Class method execute the Remove operation - uninstall the module / package
     def execute(self, args):
         d = Module.getInstance(args[0])
         if d is not None:
@@ -9,6 +10,7 @@ class RemoveCommand:
         result[args[0]] = ["is not installed"]
         return result
 
+    # This recursive function uninstall the modules / pacakges and Dependent Packages.
     def uninstall(self, parent, isInnerDependency):
         result = dict()
         installedDependents = set()

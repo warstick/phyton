@@ -15,18 +15,22 @@ operations = dict({
 ## Read commands File
 script_dir = os.path.dirname(__file__)
 file_path = os.path.join(script_dir, "../assets/commands.dat")
+# Read the command the file
 commandsData = open(file_path, "r")
 
 def processLine(line):
+        # Replacing NewLine / Carriage Return with empty and break the line into List
         arguments = line.replace("\n", "").replace("\r", "").split(" ")
-        cmd = operations[arguments[0]]
+        cmd = operations[arguments[0]] #arguments[0] - Read the Operation Type
         if cmd is None:
             raise Exception("Unknown command " + line)
         print(line)
         args = arguments.copy()
-        args.remove(arguments[0]) # remove command
+        args.remove(arguments[0]) # remove command - Operation Type
         success = cmd.execute(args)
+        # Loop through the Return values from the Execute Function of every operation
         for installedPackage in success:
+            # For Handling List Command Values
             if len(success[installedPackage]) is 0:
                 print(installedPackage)
             else:
@@ -35,13 +39,17 @@ def processLine(line):
         print("\n")
 
 def process():
+    #read Each Line
     line = commandsData.readline()
 
     while line is not None and len(line) > 0:
+        # if line consisting of END it wil break the loop
         if line == "END":
             print(line)
             break
+        #Process Command
         processLine(line)
+        # Read Next Line
         line = commandsData.readline()
 
 # kickoff the process
@@ -50,4 +58,5 @@ try:
 except:
     print("something went wrong")
 finally:
+    #Close the File Stream
     commandsData.close()

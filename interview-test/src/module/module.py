@@ -1,3 +1,5 @@
+# This Class Holds the Each Module / Package information
+# Like Depednecies, IsModule Installed or not and Dependants
 class Module:
     # varibles definition
     dependencyDictionary = dict()
@@ -12,6 +14,8 @@ class Module:
         self.dependencies = set()
         self.dependents = set()
     
+    # This static Method is for check the whether module is existed or not.
+    # If it is not existed create new moudle with the name and save it in Dependency Dictionary.
     @staticmethod
     def getInstance(name):
         target = Module.dependencyDictionary.get(name)
@@ -20,6 +24,7 @@ class Module:
             Module.dependencyDictionary[name] = target
         return target
     
+    # Method Definitions.
     def getName(self):
         return self.name
     
@@ -47,6 +52,8 @@ class Module:
     def getAll(self):
         return self.dependencyDictionary.values()
 
+    # This static Method is returns the installed Packages / Modules
+    # from the saved dictionary
     @staticmethod
     def getInstalled():
         installed = set()
