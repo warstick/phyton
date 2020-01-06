@@ -4,6 +4,7 @@
     Date: 01-05-2020
 """
 import os
+import sys
 from commands.depend_command import DependCommand
 from commands.install_command import InstallCommand
 from commands.list_command import ListCommand
@@ -17,9 +18,16 @@ operations = dict({
     "LIST": ListCommand()
 })
 
+def getFileName():
+    fileName = ''
+    if len(sys.argv) is 2:
+        fileName = sys.argv[1]
+        print(fileName)
+    return "../assets/commands.dat" if fileName is None else fileName
+
 ## Read commands File
 script_dir = os.path.dirname(__file__)
-file_path = os.path.join(script_dir, "../assets/commands.dat")
+file_path = os.path.join(script_dir, getFileName())
 # Read the command the file
 commandsData = open(file_path, "r")
 
