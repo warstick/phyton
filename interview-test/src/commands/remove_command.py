@@ -1,3 +1,8 @@
+"""
+    IDE: Visual Code
+    Author: Mani
+    Date: 01-05-2020
+"""
 from module.module import Module
 
 class RemoveCommand:

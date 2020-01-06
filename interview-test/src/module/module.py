@@ -1,3 +1,8 @@
+"""
+    IDE: Visual Code
+    Author: Mani
+    Date: 01-05-2020
+"""
 # This Class Holds the Each Module / Package information
 # Like Depednecies, IsModule Installed or not and Dependants
 class Module:

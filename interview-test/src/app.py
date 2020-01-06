@@ -1,3 +1,8 @@
+"""
+    IDE: Visual Code
+    Author: Mani
+    Date: 01-05-2020
+"""
 import os
 from commands.depend_command import DependCommand
 from commands.install_command import InstallCommand
