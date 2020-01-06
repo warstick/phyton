@@ -18,11 +18,11 @@ operations = dict({
     "LIST": ListCommand()
 })
 
+# Read the command line argument if you don't find take the default commands file path
 def getFileName():
     fileName = ''
     if len(sys.argv) is 2:
         fileName = sys.argv[1]
-        print(fileName)
     return "../assets/commands.dat" if fileName is None else fileName
 
 ## Read commands File
