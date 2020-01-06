@@ -20,7 +20,7 @@ operations = dict({
 
 # Read the command line argument if you don't find take the default commands file path
 def getFileName():
-    fileName = ''
+    fileName = None
     if len(sys.argv) is 2:
         fileName = sys.argv[1]
     return "../assets/commands.dat" if fileName is None else fileName
