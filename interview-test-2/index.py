@@ -25,13 +25,13 @@ def prepareRequestPayloadForPostAPI (partners):
         availableDates = list(set(sortedAvailableCountriesAndDates[country] + partner["availableDates"]))
         sortedAvailableCountriesAndDates[country] = sorted(availableDates, key=lambda x: datetime.strptime(x, '%Y-%m-%d'))
 
-    # print(sortedAvailableCountriesAndDates)
-    # get the partners availability
+    # get the partners availability by country
     for country in sortedAvailableCountriesAndDates:
-        partnersListFromRequest = filter(lambda x: x["country"] == country, partners)
+        partnersListFromRequest = list(filter(lambda x: x["country"] == country, partners))
         partnersInDateRange = []
         startDate = None
 
+        # compare the all available dates with each partners with respect to country
         for date in sortedAvailableCountriesAndDates[country]:
             currentPartnerInDateRange = []
             for partner in partnersListFromRequest:
@@ -39,7 +39,6 @@ def prepareRequestPayloadForPostAPI (partners):
                 currentDate = date
                 # adding 1 day to the date for checking availability for continouous day.
                 nextDate = datetime.strptime(currentDate, "%Y-%m-%d") + timedelta(days=1)
-                # print(currentDate, nextDate, datetime.strftime(nextDate, "%Y-%m-%d"))
                 # compare continues days
                 if currentDate in availableDates and datetime.strftime(nextDate, "%Y-%m-%d") in availableDates:
                     currentPartnerInDateRange.append(partner)
@@ -83,7 +82,7 @@ if response.status_code == 200:
     # print(postResponse.text)
 
     if postResponse.status_code == 200:
-        print("Successfully Posted the request")
+        print(f"Successfully Posted the request {postResponse.status_code}, {postResponse.text}")
     else:
         print(f"something went wrong while making post call to the api {postResponse.status_code}, {postResponse.reason}, {postResponse.text} ")
 
